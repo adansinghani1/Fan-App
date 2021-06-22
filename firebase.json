@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "fan-page",
     "public": "public",
     "ignore": [
       "firebase.json",
