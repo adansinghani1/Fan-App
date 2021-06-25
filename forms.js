@@ -1,14 +1,15 @@
 // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  var firebaseConfig = {
-    apiKey: "AIzaSyBkcLrQaixp8dhiMrNfrWdJ52nyadLS4cU",
-    authDomain: "login-demo-254f7.firebaseapp.com",
-    projectId: "login-demo-254f7",
-    storageBucket: "login-demo-254f7.appspot.com",
-    messagingSenderId: "228883805517",
-    appId: "1:228883805517:web:db9063121d6bf3a79ab304",
-    measurementId: "G-C8Q2HYKHY1"
-  };
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+var firebaseConfig = {
+  apiKey: "AIzaSyCaOj5UcrrJZ8TLr0142PtSH7_ZCpc2crQ",
+  authDomain: "fan-app-5a72f.firebaseapp.com",
+  databaseURL: "https://fan-app-5a72f-default-rtdb.firebaseio.com",
+  projectId: "fan-app-5a72f",
+  storageBucket: "fan-app-5a72f.appspot.com",
+  messagingSenderId: "212811887961",
+  appId: "1:212811887961:web:5cffa663a7e8ba4c008848",
+  measurementId: "G-HKXS9VT1PP"
+};
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
