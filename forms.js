@@ -1,55 +1,77 @@
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-var firebaseConfig = {
-  apiKey: "AIzaSyCaOj5UcrrJZ8TLr0142PtSH7_ZCpc2crQ",
-  authDomain: "fan-app-5a72f.firebaseapp.com",
-  databaseURL: "https://fan-app-5a72f-default-rtdb.firebaseio.com",
-  projectId: "fan-app-5a72f",
-  storageBucket: "fan-app-5a72f.appspot.com",
-  messagingSenderId: "212811887961",
-  appId: "1:212811887961:web:5cffa663a7e8ba4c008848",
-  measurementId: "G-HKXS9VT1PP"
-};
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    // User is signed in.
 
-  const auth =  firebase.auth();
+    document.getElementById("user_div").style.display = "block";
+    document.getElementById("login_div").style.display = "none";
 
-  //signup function
-  function signUp(){
-    var email = document.getElementById("email");
-    var password = document.getElementById("password");
+    var user = firebase.auth().currentUser;
 
-    const promise = auth.createUserWithEmailAndPassword(email.value,password.value);
-    //
-    promise.catch(e=>alert(e.message));
-    alert("SignUp Successfully");
-  }
+    if(user != null){
 
-  //signIN function
-  function  signIn(){
-    var email = document.getElementById("email");
-    var password  = document.getElementById("password");
-    const promise = auth.signInWithEmailAndPassword(email.value,password.value);
-    promise.catch(e=>alert(e.message));
-    
-  }
+      var email_id = user.email;
+      document.getElementById("user_para").innerHTML = "Welcome User : " + email_id;
 
-
-  //signOut
-
-  function signOut(){
-    auth.signOut();
-    alert("SignOut Successfully from System");
-  }
-
-  //active user to homepage
-  firebase.auth().onAuthStateChanged((user)=>{
-    if(user){
-      var email = user.email;
-      alert("Active user "+email);
-
-    }else{
-      alert("No Active user Found")
     }
-  })
+
+  } else {
+    // No user is signed in.
+
+    document.getElementById("user_div").style.display = "none";
+    document.getElementById("login_div").style.display = "block";
+
+  }
+});
+
+function login(){
+
+  var userEmail = document.getElementById("email_field").value;
+  var userPass = document.getElementById("password_field").value;
+
+  firebase.auth().signInWithEmailAndPassword(userEmail, userPass).catch(function(error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+
+    window.alert("Error : " + errorMessage);
+
+    // ...
+  });
+
+}
+
+function logout(){
+  firebase.auth().signOut();
+}
+
+function makeGoogleCredential(googleUser) {
+  // [START auth_make_google_credential]
+  var credential = firebase.auth.GoogleAuthProvider.credential(
+    googleUser.getAuthResponse().id_token);
+  // [END auth_make_google_credential]
+}
+function authWithCredential(credential) {
+  // [START auth_signin_credential]
+  // Sign in with the credential from the user.
+  firebase.auth()
+    .signInWithCredential(credential)
+    .then((result) => {
+      // Signed in 
+      // ...
+    })
+    .catch((error) => {
+      // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // The email of the user's account used.
+      const email = error.email;
+      // ...
+    });
+  // [END auth_signin_credential]
+}
+
+function signInRedirect(provider) {
+  // [START auth_signin_redirect]
+  firebase.auth().signInWithRedirect(provider);
+  // [END auth_signin_redirect]
+}
