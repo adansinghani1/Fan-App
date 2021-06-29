@@ -1,0 +1,75 @@
+<html>
+<head>
+  <title>Firebase Login</title>
+  <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div id="login_div" class="main-div">
+    <h3>Firebase Login</h3>
+    <input type="email" placeholder="Email" id="email_field" />
+    <input type="password" placeholder="Password" id="password_field" />
+
+    <button onclick="login()">Login to Account</button>
+  </div>
+  <div id="login">
+    <input type="email" v-model="email" />
+    <input type="password" v-model="password" />
+
+
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+
+  <div id="user_div" class="loggedin-div">
+    <h3>Welcome User</h3>
+    <p id="user_para">Welcome! You're currently logged in.</p>
+    <button onclick="logout()">Logout</button>
+  </div>
+  
+
+      <meta name="google-signin-client_id" content="212811887961-g1ql8l71t7n5k81f2detei7su8f1muam.apps.googleusercontent.com.apps.googleusercontent.com">
+      <script src="https://apis.google.com/js/platform.js" async defer></script>
+      <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
+      
+
+      <a href="#" onclick="signOut();">Sign out</a>
+  <script>
+  
+  function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
+  }
+</script>
+      <!-- The core Firebase JS SDK is always required and must be listed first -->
+      <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+
+      <!-- TODO: Add SDKs for Firebase products that you want to use
+          https://firebase.google.com/docs/web/setup#available-libraries -->
+      <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-analytics.js"></script>
+  
+      <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+  <script>
+    // Initialize Firebase
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    var config = {
+      apiKey: "AIzaSyCaOj5UcrrJZ8TLr0142PtSH7_ZCpc2crQ",
+      authDomain: "fan-app-5a72f.firebaseapp.com",
+      databaseURL: "https://fan-app-5a72f-default-rtdb.firebaseio.com",
+      projectId: "fan-app-5a72f",
+      storageBucket: "fan-app-5a72f.appspot.com",
+      messagingSenderId: "212811887961",
+      appId: "1:212811887961:web:5cffa663a7e8ba4c008848",
+      measurementId: "G-HKXS9VT1PP"
+    };
+    // Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
+    firebase.initializeApp(config);
+  </script>
+  <script src="forms.js"></script>
+
+</body>
+</html>
